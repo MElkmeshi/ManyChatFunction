@@ -10,7 +10,7 @@ app.get("/api", (req,res) => {
 });
 function manychatjson(json,cardnum=10) {
     num = json["products"].length;
-    if (cardnum>num){
+    if (cardnum>num || cardnum == 0){
         cardnum = num
     }
     manychat = {"version": "v2","content": {"messages": [],"actions": [],"quick_replies": []}};
@@ -32,8 +32,9 @@ function manychatjson(json,cardnum=10) {
     }
     return manychat;
 }
-app.get("/test", (req,res) => {
-    res.send(manychatjson(json));
+app.post("/test", (req,res) => {
+    cardnum = req.headers.cardnum
+    res.send(manychatjson(json,cardnum));
 });
 app.listen(PORT, () => {
     console.log(`listening on post ${PORT}`);
