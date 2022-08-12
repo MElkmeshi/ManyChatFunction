@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const json = require("./data.json");
+const json = require("/workspaces/ManyChat/data.json");
 let PORT = process.env.PORT || 3000;
 app.get("/", (req,res) => {
     res.send("Hello World")
